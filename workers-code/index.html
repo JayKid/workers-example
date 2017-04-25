@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Workers example</title>
+  <meta name="description" content="Workers example">
+  <meta name="author" content="Jay Kid">
+</head>
+<body>
+  <form>
+    <button type="submit">Try to click me</button>
+  </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let body = window.document.querySelector('body');
+      let colorIndex = 0;
+      const colors = ['red', 'blue', 'pink', 'green', 'orange', 'rebeccapurple'];
+      document.querySelector('button').addEventListener('click', function (event) {
+        event.preventDefault();
+        body.style.background = colors[colorIndex];
+        ++colorIndex;
+        colorIndex = colorIndex % colors.length;
+      });
+
+      var worker = new Worker('js/primes.js');
+      worker.onmessage = function (event) {
+        window.alert('yay');
+        window.console.log(event.data.primes);
+      };
+  });
+  </script>
+</body>
+</html>

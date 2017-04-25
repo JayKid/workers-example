@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Non-worker example</title>
+  <meta name="description" content="Non-worker example">
+  <meta name="author" content="Jay Kid">
+</head>
+<body>
+  <form>
+    <button type="submit">Try to click me</button>
+  </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let body = window.document.querySelector('body');
+      let colorIndex = 0;
+      const colors = ['red', 'blue', 'pink', 'green', 'orange', 'rebeccapurple'];
+      document.querySelector('button').addEventListener('click', function (event) {
+        event.preventDefault();
+        body.style.background = colors[colorIndex];
+        ++colorIndex;
+        colorIndex = colorIndex % colors.length;
+      });
+  });
+  </script>
+  <script src="js/primes.js"></script>
+</body>
+</html>
